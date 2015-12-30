@@ -31,12 +31,7 @@ App = React.createClass({
     event.preventDefault();
     // Find the text field via the React ref
     var text = React.findDOMNode(this.refs.textInput).value.trim();
-    Tasks.insert({
-      text: text,
-      createdAt: new Date(),            // current time
-      owner: Meteor.userId(),           // _id of logged in user
-      username: Meteor.user().username  // username of logged in user
-    });
+    Meteor.call("addTask", text);
     // Clear form
     React.findDOMNode(this.refs.textInput).value = "";
   },
@@ -59,7 +54,7 @@ App = React.createClass({
                 onClick={this.toggleHideCompleted} />
               Hide Completed Tasks
             </label>
-            <AccountsUIWrapper />   
+            <AccountsUIWrapper />
             { this.data.currentUser ?
               <form className="new-task" onSubmit={this.handleSubmit} >
                 <input
