@@ -56,6 +56,7 @@ App = React.createClass({
                 onClick={this.toggleHideCompleted} />
               Hide Completed Tasks
             </label>
+            <AccountsUIWrapper />   /*include component*/
             <form className="new-task" onSubmit={this.handleSubmit} >
               <input
                 type="text"
